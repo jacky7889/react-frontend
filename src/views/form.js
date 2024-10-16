@@ -1,33 +1,78 @@
+import { useState } from "react";
+
 const MyForm = () => {
+  const [formData, setFormData] = useState([
+    { name: "", email: "", password: "", mobile: "", role: "" },
+  ]);
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("he");
+  };
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    console.log(formData);
   };
 
   return (
     <form className="w-50 mx-auto" onSubmit={submitHandler}>
       <div className="form-group">
         <label>Name</label>
-        <input type="text" name="name" value="" className="form-control" />
-        <label>Email</label>
+        <input
+          type="text"
+          name="name"
+          // value={setFormData.name}
+          className="form-control"
+          onChange={onChangeHandler}
+        />
       </div>
       <div className="form-group">
-        <input type="text" name="email" value="" className="form-control" />
+        <label>Email</label>
+        <input
+          type="text"
+          name="email"
+          // value={setFormData.email}
+          className="form-control"
+          onChange={onChangeHandler}
+        />
       </div>
       <div className="form-group">
         <label>Password</label>
-        <input type="text" name="password" value="" className="form-control" />
+        <input
+          type="text"
+          name="password"
+          // value={setFormData.password}
+          className="form-control"
+          onChange={onChangeHandler}
+        />
       </div>
       <div className="form-group">
-        <label>Name</label>
-        <input type="text" name="mobile" value="" className="form-control" />
+        <label>Mobile</label>
+        <input
+          type="text"
+          name="mobile"
+          // value={setFormData.mobile}
+          className="form-control"
+          onChange={onChangeHandler}
+        />
       </div>
       <div className="form-group">
-        <select className="form-control">
+        <label>Role</label>
+        <select
+          className="form-control"
+          // value={setFormData.role}
+          onChange={onChangeHandler}
+        >
           <option>select</option>
-          <option>Teacher</option>
-          <option>Student</option>
-          <option>Admin</option>
+          <option value="Teacher">Teacher</option>
+          <option value="Student">Student</option>
+          <option value="Member">Member</option>
         </select>
       </div>
       <button type="submit" className="btn btn-primary">
